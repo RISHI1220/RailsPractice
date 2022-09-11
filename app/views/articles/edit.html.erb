@@ -1,5 +1,4 @@
-<h1>Edit Article</h1>
-<h1> <%= @article.id %>  </h1>
-<h1> <%= @article.title %>  </h1>
-<h1> <%= @article.body %>  </h1>
-<%= render partial: "form", locals: { forwardPass: update_post_path(@article.id) } %>
+<div class="d-flex align-items-center justify-content-center">
+  <h1 class="my-4">Edit Page</h1>
+</div>
+<%= render partial: "form", locals: { forwardPass: update_post_path(@article.id), btnTitle: "Edit" } %>

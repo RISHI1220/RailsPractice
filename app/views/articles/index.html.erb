@@ -1,12 +1,14 @@
-<h1>Articles</h1>
+<div class="d-flex align-items-center justify-content-center">
+  <h1 class="my-4">Welcome to BLOG</h1>
+</div>
+<div class="d-flex flex-column">
+  <h3 class="my-2">Blog List</h3>
+  <ul class="list-group">
+    <% @articles.each do |article| %>
+      <li class="list-group-item">
+        <%= link_to article.title, show_post_path(article.id), class: "text-decoration-none" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, show_post_path(article.id) %>
-    </li>
-  <% end %>
-</ul>
-
-
-<%= link_to "New Article", new_path %>

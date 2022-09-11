@@ -1,21 +1,24 @@
-<%= form_with model: @article, url: forwardPass do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% @article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+<div class="align-items-center justify-content-center">
+  <%= form_with model: @article, url: forwardPass do |form| %>
+    <div class="my-3">
+      <%= form.label :title , class: "fs-4" %> 
+      <%= form.text_field :title , class: "form-control" %>
+      <% @article.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
-    <% @article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <div class="my-3">
+      <%= form.label :body , class: "fs-4" %> 
+      <%= form.text_field :body , class: "form-control h-50" %>
+      <% @article.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="my-3">
+      <%= form.submit btnTitle , class:"btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    byebug
+    # byebug
     @article = Article.new(article_params)
 
     if @article.save
@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    byebug
+    # byebug
     @article = Article.find(params[:id])
     # render json: @article
     if @article.update(article_params)
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
   end
 
   def delete
-    byebug
+    # byebug
     @article=Article.find(params[:id])
     @article.destroy
     redirect_to root_path, status: :see_other
