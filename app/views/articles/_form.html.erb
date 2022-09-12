@@ -1,20 +1,20 @@
 <div class="align-items-center justify-content-center">
   <%= form_with model: @article, url: forwardPass do |form| %>
-    <div class="my-3">
+    <p class="my-3">
       <%= form.label :title , class: "fs-4" %> 
       <%= form.text_field :title , class: "form-control" %>
       <% @article.errors.full_messages_for(:title).each do |message| %>
         <div><%= message %></div>
       <% end %>
-    </div>
+    </p>
 
-    <div class="my-3">
+    <p class="my-3">
       <%= form.label :body , class: "fs-4" %> 
-      <%= form.text_field :body , class: "form-control h-50" %>
+      <%= form.text_area :body , class: "form-control" %>
       <% @article.errors.full_messages_for(:body).each do |message| %>
         <div><%= message %></div>
       <% end %>
-    </div>
+    </p>
 
     <div class="my-3">
       <%= form.submit btnTitle , class:"btn btn-primary" %>

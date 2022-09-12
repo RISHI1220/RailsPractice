@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   patch "edit/:id", to: "articles#update", as: :update_post
 
   delete "delete/:id", to: "articles#delete", as: :delete_post
+
+  post "comment/:id", to: "comments#create", as: :create_comment
 end
