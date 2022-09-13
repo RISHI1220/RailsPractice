@@ -16,7 +16,13 @@ class ArticlesController < ApplicationController
     byebug
     @article = Article.new(article_params)
     if @article.save
-      @article.authors.create(article_params2)
+      if article_params2[:name] != ""
+        if Author.find_by(name: article_params2[:name])
+          @article.authors<<Author.find_by(name: article_params2[:name])
+        else
+          @article.authors.create(article_params2)
+        end
+      end
       redirect_to show_post_path(@article.id)
     else
       render :new, status: :unprocessable_entity
@@ -32,6 +38,15 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     # render json: @article
     if @article.update(article_params)
+      if article_params2[:name] != ""
+        if Author.find_by(name: article_params2[:name])
+          if @article.authors.find_by(name: article_params2[:name]) == false
+            @article.authors<<Author.find_by(name: article_params2[:name])
+          end
+        else
+          @article.authors.create(article_params2)
+        end
+      end
       redirect_to show_post_path(@article.id)
     else
       # render :edit, status: :unprocessable_entity
