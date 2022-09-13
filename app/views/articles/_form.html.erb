@@ -15,6 +15,10 @@
         <div><%= message %></div>
       <% end %>
     </p>
+    <p class="my-3">
+      <%= form.label :name, "Author Name" , class: "fs-4" %> 
+      <%= form.text_field :name , class: "form-control" %>
+    </p>
 
     <div class="my-3">
       <%= form.submit btnTitle , class:"btn btn-primary" %>

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     def create
-        byebug
+        # byebug
         @article = Article.find(params[:id])
         @comment = @article.comments.create(comment_params)
         redirect_to show_post_path(@article.id)

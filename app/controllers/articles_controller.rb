@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
   def show
     # byebug
     @article = Article.find(params[:id])
+    @authors = @article.authors
     # render json: @article
   end
   def new
@@ -12,10 +13,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    # byebug
+    byebug
     @article = Article.new(article_params)
-
     if @article.save
+      @article.authors.create(article_params2)
       redirect_to show_post_path(@article.id)
     else
       render :new, status: :unprocessable_entity
@@ -48,5 +49,8 @@ class ArticlesController < ApplicationController
   private
     def article_params
       params.require(:article).permit(:title, :body)
+    end
+    def article_params2
+      params.require(:article).permit(:name)
     end
 end
