@@ -1,31 +1,47 @@
 class ArticlesController < ApplicationController
   def index
-    @articles=Article.all
+    if user_signed_in?
+      @articles=Article.all
+    else
+      redirect_to new_user_session_path
+    end
   end
   def show
     # byebug
-    @article = Article.find(params[:id])
-    @authors = @article.authors
+    if user_signed_in?
+      @article = Article.find(params[:id])
+      @authors = @article.authors
+    else
+      redirect_to new_user_session_path
+    end
     # render json: @article
   end
   def new
-    @article = Article.new
+    if user_signed_in?
+      @article = Article.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
-    byebug
-    @article = Article.new(article_params)
-    if @article.save
-      if article_params2[:name] != ""
-        if Author.find_by(name: article_params2[:name])
-          @article.authors<<Author.find_by(name: article_params2[:name])
-        else
-          @article.authors.create(article_params2)
+    # byebug
+    if user_signed_in?
+      @article = Article.new(article_params)
+      if @article.save
+        if article_params2[:name] != ""
+          if Author.find_by(name: article_params2[:name])
+            @article.authors<<Author.find_by(name: article_params2[:name])
+          else
+            @article.authors.create(article_params2)
+          end
         end
+        redirect_to show_post_path(@article.id)
+      else
+        render :new, status: :unprocessable_entity
       end
-      redirect_to show_post_path(@article.id)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_user_session_path
     end
   end
 

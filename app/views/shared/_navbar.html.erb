@@ -13,8 +13,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <%= link_to "Home", root_path, class: "nav-item nav-link fs-5" %> <%=
-      link_to "Create New Post", new_path, class: "nav-item nav-link fs-5" %> 
+      <% if user_signed_in? %>
+        <%= link_to "Home", root_path, class: "nav-item nav-link fs-5" %> 
+        <%= link_to "Create New Post", new_path, class: "nav-item nav-link fs-5" %> 
+        <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-item nav-link fs-5" %>
+        <%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "nav-item nav-link fs-5" %> 
+      <% else %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "nav-item nav-link fs-5" %> 
+        <%= link_to "Sign In", new_user_session_path, class: "nav-item nav-link fs-5" %> 
+      <% end %> 
     </div>
   </div>
 </nav>
