@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
           @article.authors.create(article_params2)
         end
       end
+        flash[:alert]= "New Article Created Successfully"
         redirect_to show_post_path(@article.id)
     else
       render :new, status: :unprocessable_entity
@@ -47,6 +48,7 @@ class ArticlesController < ApplicationController
           @article.authors.create(article_params2)
         end
       end
+      flash[:alert]= "Article Edited Successfully"
       redirect_to show_post_path(@article.id)
     else
       # render :edit, status: :unprocessable_entity
@@ -58,6 +60,7 @@ class ArticlesController < ApplicationController
     # byebug
     @article=Article.find(params[:id])
     @article.destroy
+    flash[:alert]= "Article Deleted Successfully"
     redirect_to root_path, status: :see_other
   end
 
