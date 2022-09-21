@@ -8,6 +8,6 @@ class Article < ApplicationRecord
 
     private
     def capatalize_title
-        self.title=title.upcase
+        self.title=title.capitalize()
     end
 end

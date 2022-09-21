@@ -4,4 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
+
+  validates :name, presence: true, length: { minimum:1, maximum: 20 }
+
+  before_validation :capatalize_title
+     
+  private
+  def capatalize_title
+    self.name=name.capitalize()
+  end
 end
