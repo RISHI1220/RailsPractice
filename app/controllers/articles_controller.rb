@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       if article_params2[:name] != ""
         if Author.find_by(name: article_params2[:name])
-          if @article.authors.find_by(name: article_params2[:name]) == false
+          if @article.authors.find_by(name: article_params2[:name]) == nil
             @article.authors<<Author.find_by(name: article_params2[:name])
           end
         else
