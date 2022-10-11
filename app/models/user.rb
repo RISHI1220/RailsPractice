@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { minimum:1, maximum: 20 }
 
-  before_validation :capatalize_title
+  before_save :capatalize_title
      
   private
   def capatalize_title

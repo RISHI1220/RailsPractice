@@ -4,7 +4,7 @@ class Article < ApplicationRecord
     validates :title, presence: true
     validates :body, presence: true, length: { minimum: 10 }
 
-    before_validation :capatalize_title
+    before_save :capatalize_title
 
     private
     def capatalize_title

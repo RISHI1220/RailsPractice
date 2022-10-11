@@ -51,8 +51,8 @@ class ArticlesController < ApplicationController
       flash[:alert]= "Article Edited Successfully"
       redirect_to show_post_path(@article.id)
     else
-      # render :edit, status: :unprocessable_entity
-      render json: article
+      render :edit, status: :unprocessable_entity
+      # render json: article
     end
   end
 
